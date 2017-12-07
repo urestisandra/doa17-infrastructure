@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion" : "2010-09-09",
 
-  "Description" : "a VPC w/ 1 public subnet, an IGW, route tables, ACL, 2 EC2 instances",
+  "Description" : "2 EC2 instances, 1 S3 Bucket",
 
   "Mappings" : {
     "VPCIpSpace" : {
@@ -152,22 +152,39 @@
           {"Key" : "Name", "Value" : { "Fn::Join" : [ "", [ { "Ref" : "EnvironmentName" }, "_ProdWebApp" ] ] } }
         ]
       }
+    },
+
+    "S3Bucket": {
+      "Type": "AWS::S3::Bucket",
+      "DeletionPolicy":"Retain",
+      "Properties": {
+        "BucketName" : { "Fn::Join" : [ "", [ "doa17-", { "Ref": "EnvironmentName" } ] ] },
+        "VersioningConfiguration" : {
+          "Status" : "Enabled"
+        },
+        "Tags" : [
+          {"Key" : "Name", "Value" : { "Fn::Join" : [ "", [ "doa17-", { "Ref" : "EnvironmentName" } ] ] } }
+        ]
+      }
     }
 
   },
 
   "Outputs" : {
 
-
     "DevPublicDNS" : {
       "Value" : { "Fn::Join" : ["",["http://",{ "Fn::GetAtt" : [ "DevWebApp01", "PublicDnsName" ] }]]},
       "Description" : "DevWebApp01 Public DNS Name"
     },
 
-
     "ProdPublicDNS" : {
       "Value" : { "Fn::Join" : ["",["http://",{ "Fn::GetAtt" : [ "ProdWebApp01", "PublicDnsName" ] }]]},
       "Description" : "ProdWebApp01 Public DNS Name"
+    },
+
+    "S3Bucket" : {
+      "Description" : "S3 Bucket",
+      "Value" : { "Ref" : "S3Bucket" }
     }
 
   }
