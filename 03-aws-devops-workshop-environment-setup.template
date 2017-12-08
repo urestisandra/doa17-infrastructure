@@ -117,7 +117,7 @@
           }
         },
         "Tags" : [
-          {"Key" : "Name", "Value" : { "Fn::Join" : [ "", [ { "Ref" : "EnvironmentName" }, "_DevWebApp" ] ] } }
+          {"Key" : "Name", "Value" : { "Fn::Join" : [ "", [ { "Ref" : "EnvironmentName" }, "-DevWebApp" ] ] } }
         ]
       }
     },
@@ -149,14 +149,13 @@
           }
         },
         "Tags" : [
-          {"Key" : "Name", "Value" : { "Fn::Join" : [ "", [ { "Ref" : "EnvironmentName" }, "_ProdWebApp" ] ] } }
+          {"Key" : "Name", "Value" : { "Fn::Join" : [ "", [ { "Ref" : "EnvironmentName" }, "-ProdWebApp" ] ] } }
         ]
       }
     },
 
     "S3Bucket": {
       "Type": "AWS::S3::Bucket",
-      "DeletionPolicy":"Retain",
       "Properties": {
         "BucketName" : { "Fn::Join" : [ "", [ "doa17-", { "Ref": "EnvironmentName" } ] ] },
         "VersioningConfiguration" : {
