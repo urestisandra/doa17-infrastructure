@@ -15,5 +15,5 @@
     "image": "aws/codebuild/java:openjdk-8",
     "computeType": "BUILD_GENERAL1_SMALL"
   },
-  "serviceRole": "arn:aws:iam::997064792377:role/DevopsWorkshop-raem-roles-BuildTrustRole-1T4OTCNLFV6H"
+  "serviceRole": "arn:aws:iam::997064792377:role/DevOps-Workshop-Roles-BuildTrustRole-1MCINHQIGH05E"
 }
