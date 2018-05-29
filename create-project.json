@@ -1,12 +1,12 @@
 {
-  "name": "{ENVIRONMENT}-project",
+  "name": "{ENVIRONMENT_NAME}-project",
   "source": {
     "type": "S3",
     "location": "doa17-application/codebuild.zip"
   },
   "artifacts": {
     "type": "S3",
-    "location": "doa17-{ENVIRONMENT}",
+    "location": "doa17-{ENVIRONMENT_NAME}",
     "packaging": "ZIP",
     "name": "WebAppOutputArtifact.zip"
   },
